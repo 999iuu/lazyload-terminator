@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<style>
+  body {
+    width: 260px; margin: 0; padding: 14px;
+    font: 13px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: #111827; background: #fff;
+  }
+  h1 { font-size: 14px; margin: 0 0 4px; }
+  .sub { font-size: 11px; color: #6b7280; margin-bottom: 12px; word-break: break-all; }
+  .row { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; border-top: 1px solid #f3f4f6; }
+  .lbl { font-size: 12px; }
+  .lbl small { display: block; color: #9ca3af; font-size: 11px; }
+  button { width: 100%; margin-top: 12px; padding: 8px; border: 0; border-radius: 6px;
+    background: #6366f1; color: #fff; font-size: 12px; cursor: pointer; }
+  button:hover { background: #4f46e5; }
+  .st { font-size: 11px; color: #6b7280; margin-top: 10px; }
+  .sw { position: relative; width: 38px; height: 21px; border-radius: 11px; background: #d1d5db; cursor: pointer; transition: background .2s; flex: none; }
+  .sw.on { background: #6366f1; }
+  .sw i { position: absolute; top: 2px; left: 2px; width: 17px; height: 17px; border-radius: 50%; background: #fff; transition: left .2s; }
+  .sw.on i { left: 19px; }
+</style>
+</head>
+<body>
+  <h1>懒加载终结者</h1>
+  <div class="sub" id="host">—</div>
+
+  <div class="row">
+    <div class="lbl">全局启用<small>关闭后所有站点都不生效</small></div>
+    <div class="sw" id="swMaster"><i></i></div>
+  </div>
+
+  <div class="row">
+    <div class="lbl">本站启用<small>仅对当前域名生效</small></div>
+    <div class="sw" id="swHost"><i></i></div>
+  </div>
+
+  <button id="rescan">立即重新加载本页图片</button>
+  <div class="st" id="st">准备中…</div>
+
+<script src="popup.js"></script>
+</body>
+</html>
