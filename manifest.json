@@ -1,16 +1,30 @@
 {
   "manifest_version": 3,
   "name": "懒加载终结者",
-  "version": "1.0.0",
-  "description": "通用网页图片预加载：拦截 IntersectionObserver 让所有懒加载图片立即加载，无需滚动、无需手动刷新。支持按站点开关。",
+  "version": "1.1.0",
+  "description": "通用网页图片预加载：在页面主世界拦截 IntersectionObserver 让所有懒加载图片立即加载，并自动重试加载失败的图片。无需滚动、无需手动刷新。支持按站点开关。",
   "permissions": ["storage"],
   "host_permissions": ["<all_urls>"],
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
+      "js": ["inject.js"],
+      "run_at": "document_start",
+      "all_frames": true,
+      "world": "MAIN"
+    },
+    {
+      "matches": ["<all_urls>"],
       "js": ["content.js"],
       "run_at": "document_start",
-      "all_frames": true
+      "all_frames": true,
+      "world": "ISOLATED"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["inject.js"],
+      "matches": ["<all_urls>"]
     }
   ],
   "action": {
